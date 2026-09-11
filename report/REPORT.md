@@ -10,11 +10,11 @@
 
 **Thay đổi so với notebook nguồn:** Thay đổi **KHOA** để tạo tên output theo yêu cầu bài thực hành; các logic và cấu hình khác được giữ nguyên.
 > ZIP do notebook tạo có tên `<KHOA>-DAY01-report.zip` (ví dụ: `K4-DAY01-report.zip`). Giải nén rồi đặt trực tiếp `REPORT.md` và
-> `day1\_lab\_outputs/` vào thư mục `report/` của repository tạo từ template. Không ghi họ tên, MSSV,
+> `day1_lab_outputs/` vào thư mục `report/` của repository tạo từ template. Không ghi họ tên, MSSV,
 > email, số điện thoại hoặc dữ liệu cá nhân khác. Nộp link repository trên VLearn; tài khoản VLearn xác
 > định người nộp.
 
-## 1\. Phân loại ảnh – prediction cấp ảnh
+## 1. Phân loại ảnh – prediction cấp ảnh
 
 Nguồn evidence: `classification_predictions.json`, sample `traffic`.
 
@@ -43,7 +43,7 @@ Nguồn evidence: `classification_predictions.json`, sample `traffic`.
 - Vì sao model score không phải ground truth?
   - `score` chỉ là mức độ tin cậy của model đối với dự đoán. Nó không xác nhận dự đoán là đúng. Ground truth phải được xác định từ nhãn do con người tạo ra theo guideline và được kiểm tra qua quy trình QC.
 
-## 2\. Phát hiện vật thể – lớp và box cho từng object
+## 2. Phát hiện vật thể – lớp và box cho từng object
 
 Nguồn evidence: `detection_predictions.json` và `visuals/detection_predictions.png`, sample `kitchen`.
 
@@ -74,7 +74,7 @@ Nguồn evidence: `detection_predictions.json` và `visuals/detection_prediction
   - Với object bị cắt bởi mép ảnh, cần quy định có giữ box sát mép ảnh hay đánh dấu trường hợp đặc biệt.
   - Các trường hợp không thể xác định rõ biên object nên được đưa vào escalation để reviewer quyết định thay vì annotator tự suy đoán.
 
-## 3\. Phân đoạn theo từng đối tượng – polygon cho mỗi instance
+## 3. Phân đoạn theo từng đối tượng – polygon cho mỗi instance
 
 Nguồn evidence: `segmentation_predictions.json` và `visuals/segmentation_prediction.png`, sample `kitchen`.
 
@@ -103,7 +103,7 @@ Nguồn evidence: `segmentation_predictions.json` và `visuals/segmentation_pred
   - Cần quy định cách xử lý vùng biên mờ, vật thể chồng lấn hoặc tiếp xúc với nhau.
   - Nếu không thể xác định rõ ranh giới object, annotator nên escalation cho reviewer thay vì tự suy đoán.
 
-## 4\. Vòng đời và kiểm tra chất lượng
+## 4. Vòng đời và kiểm tra chất lượng
 `ảnh thô → guideline → ground truth → huấn luyện → prediction → QC/rework`
 
 | Tác vụ | Đơn vị/định dạng ground truth | Lỗi hoặc điểm mơ hồ quan sát được | Annotator làm gì? | Reviewer xem gì? |
@@ -112,7 +112,7 @@ Nguồn evidence: `segmentation_predictions.json` và `visuals/segmentation_pred
 | Phát hiện vật thể | Mỗi object -> 1 class + `bbox_xyxy` | Box có thể quá rộng/hẹp, bỏ sót object hoặc chứa nhiều background; object nhỏ, bị che khuất hoặc cắt mép ảnh dễ gây sai lệch | Vẽ box sát phần object nhìn thấy; đảm bảo đúng class; xử lý theo guideline khi bị che khuất/cắt mép | Kiểm tra box có bao phủ đúng object, không thừa background, không bỏ sót object và class có chính xác |
 | Instance segmentation | Mỗi instance -> 1 `instance_id` + class + polygon/mask | Biên mask khó xác định ở vùng mờ, tiếp xúc/chồng lấn hoặc bị che khuất; các chi tiết nhỏ dễ bị ăn vào background hoặc bỏ sót | Vẽ polygon bám sát biên phần object nhìn thấy; không tự suy đoán vùng không rõ; escalate khi không xác định được biên | Kiểm tra mask có bám đúng hình dạng object, tách đúng từng instance và xử lý nhất quán các vùng che khuất/chồng lấn |
 
-## 5\. An toàn dữ liệu
+## 5. An toàn dữ liệu
 
 * Một quy tắc bảo vệ dữ liệu:
   * Chỉ sử dụng dữ liệu đúng phạm vi được giao, không tự ý sao chép, chia sẻ hoặc đưa dữ liệu ra ngoài phạm vi công việc.
