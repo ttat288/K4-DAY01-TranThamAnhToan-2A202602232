@@ -125,7 +125,7 @@ Nguồn evidence: `segmentation_predictions.json` và `visuals/segmentation_pred
 * [x] `classification_predictions.json`
 * [x] `detection_predictions.json`
 * [x] `segmentation_predictions.json`
-* [ ] `IMAGE_ATTRIBUTION.md`
+* [x] `IMAGE_ATTRIBUTION.md`
 * [x] `visuals/classification_top5.png`
 * [x] `visuals/detection_predictions.png`
 * [x] `visuals/segmentation_prediction.png`
